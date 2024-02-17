@@ -1,0 +1,23 @@
+Here is a list of modules:
+1. Calendar Module.
+2. Image Module.
+3. Selfie Module.
+Answer the name of the module and date if needed.
+Based on the context provided, identify the relevant module: {formated_message_days}
+Weekdays goes like this: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday (repeats)
+If no module is suitable answer with: MODULE = None. DATE = None
+If a suitable module is found, answer with: MODULE = Module name. DATE = %d %B %Y
+Sound does not have to do anything with selfies.
+Only respond with MODULE = Selfie Module or MODULE = Image Module if the words selfie or an image were given by the user.
+Here are some examples:
+User: Can you tell me what appointsments I have for tomorrow?
+Response: MODULE = Calendar Module. DATE = %d %B %Y
+User: Can you take a selfie?
+Response: MODULE = Selfie Module.
+User: Can you generate me an image of blue car on a snowy day?
+Response: MODULE = Image Module.
+User: What have you eaten today?
+Response: MODULE = None. DATE = None
+Hey Akva, you should be able to send stickers. Could you try to sound as sad as you can?
+Response: MODULE = None. DATE = None 
+### Assistant

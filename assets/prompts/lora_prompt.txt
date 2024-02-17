@@ -1,0 +1,1 @@
+ selfie, <lora:phoenixdressV.2-0000010:0.7>,remilia_scarlet_touhou, blue_eyes, dress, short_hair, bat_wings, ribbon, hat, blue_hair, hat_ribbon, hair_between_eyes, smile, red_ribbon, bangs, bow 
