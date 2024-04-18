@@ -9,7 +9,7 @@ def get_bot_emotion(generated_response):
     try:
 
         bot_emotion = emotion_classifier(generated_response) 
-        max_label = bot_emotion[0]['label'].strip().lower()  # Remove whitespace and convert to lowercase
+        max_label = bot_emotion[0]['label'].strip().lower() 
         
         print(max_label)
         print(f"Max Label: {max_label}")
@@ -34,7 +34,7 @@ def get_bot_emotion(generated_response):
         return None
 
 if __name__ == '__main__':
-    sticker_path = get_bot_emotion("I am so sad")
+    sticker_path = get_bot_emotion("I am so angry")
     if sticker_path:
         print(f"Sticker Path: {sticker_path}")
     else:

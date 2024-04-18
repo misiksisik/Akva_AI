@@ -27,7 +27,7 @@ from compel import Compel, ReturnedEmbeddingsType
 
 import torch
 
-def generate_prompt_header(short_memory, message, prompt=CHARACTER_PROMPT):
+def generate_prompt_header(short_memory, message, prompt):
     #short_term
     memory_content = "\n".join(short_memory.memory)
     memory_content = str(short_memory)
@@ -70,11 +70,11 @@ def fix_response(response):
 def generate_image_response(message, short_memory, image_prompt):
     prompt = CHARACTER_PROMPT
     prompt += AKVA_MAY_USE_THIS
-    prompt += generate_prompt_header(short_memory, message, prompt)
+    prompt = generate_prompt_header(short_memory, message, prompt)
     prompt += image_prompt
     prompt += RESPONSE_FOOTER.format(message=message)
 
-
+    print("konečný prompt\n\n")
     print (prompt)
     response = create_completion(prompt)
     response = fix_response(response)
@@ -91,10 +91,10 @@ def generate_response(message, short_memory, calendar, prompt=CHARACTER_PROMPT):
                f" Current time: {TIME}\n"
                f" Current day: {DAY}\n"
                f" Calendar Events:\n{calendar}")
-    prompt += generate_prompt_header(short_memory, message, prompt)
+    prompt = generate_prompt_header(short_memory, message, prompt)
     prompt += TEXT_RESPONSE_PROMPT
     prompt += RESPONSE_FOOTER.format(message=message)
-
+    print("konečný prompt\n\n")
     print (prompt)
 
     response = create_completion(prompt)
@@ -105,17 +105,17 @@ def generate_response(message, short_memory, calendar, prompt=CHARACTER_PROMPT):
     return response
     
 
-
+#potřebné moduly pro generování odpovědi
 def module_classifier (message):
     messsage_and_days = f"""{message}
-            Today's date: {DATE}
-            Current time: {TIME}
-            Today is {DAY}
-            Next week starts on: {NEXT_WEEK_DATE}
-            """
+    Today's date: {DATE}
+    Current time: {TIME}
+    Today is {DAY}
+    Next week starts on: {NEXT_WEEK_DATE}"""
     prompt=MODULE_CLASSIFIER_PROMPT.replace("{formated_message_days}", messsage_and_days)
-               
-    print ("Here is prompt: " , prompt)
+    prompt += (f"\nUser: {message}"
+               "\nResponse: " )       
+    #print (prompt)
     response = create_completion(prompt)
 
     generated_module = response['choices'][0]['text'].split('(END)')[0].strip()
